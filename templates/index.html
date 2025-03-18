@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+		<link rel="shortcut icon" href="static/favicon.svg" type="svg/xml">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css')}}" />
+  </head>
+  <body>
+    <main>
+			<div class="container">
+				<form>
+					<label id="url-label" for="url-input">Paste your URL</label>
+					<div class="input-container">
+						<div id="input-wrapper">
+							<input id="url-input" name="url-input" placeholder="https://www.example.com" />
+							<p id="input-error" class="d-none">Invalid URL!</p>
+						</div>
+						<input id="submit" type="submit" value="Short it!" />
+					</div>
+				</form>
+				<div id="short-url" class="short-url-container d-none">
+					<p id="short-url-text">This should not be visible yet</p>
+					<button id="copy-btn"><span>&#10063</span> COPY</button>
+				</div>
+				<div id="copy-feedback" class="d-none">
+					<p>Copied!</p>
+				</div>
+			</div>
+    </main>
+    <script src="{{ url_for('static', path='index.js')}}"></script>
+  </body>
+</html>
