@@ -8,6 +8,9 @@ from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 from utils.url import URLRelation
 from db.memory.db import MemoryDB
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -32,8 +35,8 @@ async def root(request: Request):
     )
 
 @app.post("/url", response_class=JSONResponse)
-async def gen_short_url(request: Request, body: URLBody):
-    url_relation = URLRelation(url=body.url, host=request.client.host)
+async def gen_short_url(body: URLBody):
+    url_relation = URLRelation(url=body.url)
     db.save(url_relation)
     return JSONResponse(content={
         "short_url": url_relation.short_url
